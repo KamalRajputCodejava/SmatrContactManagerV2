@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>HomePage</title>
+</head>
+<body>
+	<section>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card">
+						<!--Error Messege Dynamic  -->
+						<!-- th:if is used for conditional rendering  th:classappend is used for the appending Dynamic claass  very imp -->
+						<div th:if="${session.message}"
+							th:classappend="${session.message.type}" class="alert"
+							role="alert">
+							<!-- Showing dynamic error message using session -->
+							<p th:text="${session.message.content}"></p>
+							<!-- Removing the Message from the session -->
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						<!-- End Error messege -->
+						<div class="container text-center">
+							<img style="width: 80px" th:src="@{/img/interace.png}"
+								alt="icon_signup" />
+						</div>
+						<h1>Signup here!!</h1>
+						<form th:action="@{/do_register}" method="post" enctype="multipart/form-data"
+							th:Object="${user}">
+							<!-- name field -->
+							<div class="mb-3">
+								<label for="form_field" class="form-label font-kgs">Name</label> 
+									<input type="text" class="form-control" id="form_field"
+									name="name" required="required"
+									placeholder="Enter the name" th:value="${user.name}">
+							</div>
+							
+							<!-- Email Field -->
+							<div class="mb-3">
+								<label for="email_field" class="form-label font-kgs">Email
+									Id</label> <input type="email" class="form-control" id="email_field"
+									name="email" aria-describedby="emailHelp" required="required"
+									placeholder="Enter Email Id" th:value="${user.email}">
+							</div>
+							<!-- password field -->
+							<div class="mb-3">
+								<label for="exampleInputPassword1" class="form-label font-kgs">Password</label>
+								<input type="password" class="form-control" name="password"
+									required="required" id="exampleInputPassword1"
+									placeholder="Enter the password">
+							</div>
+							<!-- about field -->
+
+							<div class="mb-3">
+								<label for="about_you" class="form-label font-kgs">About
+									yours</label>
+								<textarea class="form-control" th:value="${user.about}"
+									placeholder="Enter something yourself" name="about"
+									id="about_you" rows="6"></textarea>
+								<!--this is checkbox  -->
+								<div class="mb-3 form-check">
+									<input style="margin-top: 6px" type="checkbox" name="agreement"
+										class="form-check-input" id="exampleCheck1"> <label
+										style="margin-right: 550px" class="form-check-labels"
+										for="exampleCheck1">Accepted all terms and conditions</label>
+								</div>
+								</div>
+								<!--Image of the User  -->
+								<br>
+								<div class="col-md-10 my-1">
+									<label class="form-control" for="image"
+										style="margin-right:7px">Profile Picture</label> 
+										<input type="file" class="custom-file"
+										name="myImageUrl" id="image" />
+
+								</div>
+								
+								
+								
+								
+								
+							
+							<div class="container text-center">
+								<!-- buttons -->
+								<button type="submit" class="btn bg-primery text-white">Submit</button>
+								<button type="reset" class="btn btn-warning text-white">Reset</button>
+							</div>
+
+
+
+						</form>
+					</div>
+                  </div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

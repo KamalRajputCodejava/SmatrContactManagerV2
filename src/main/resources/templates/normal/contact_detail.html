@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>HomePage</title>
+</head>
+<body>
+	<section>
+		<div style="margin-right:12px; margin-left: 12px" class=" card bg-dark">
+		<div class="card-body" th:if="${model}">
+		<!-- showing Updation message .. -->
+		
+		<!-- showing upadated message -->
+		
+		
+		<div th:if="${session.message}"  th:classappend="${session.message.type}"  class="alert  text-center " role="alert">
+               <span th:text="${session.message.content}"></span>
+               <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+</div>
+		
+		<div class="container text-center">
+	 <img style="height: 250px;width:250px" class="my_profile" th:src="@{'/img/'+${model.Image}}" alt="profilePhotoDisplay" />
+		
+		<h3  class="text-white"><span th:text="${model.name}"></span> { <span th:text="${model.secondName}"></span> }</h3>
+		
+		
+		<!-- table <-->
+			<div class="table-responsive">
+		</-->
+		<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">SCM2020<span th:text="${model.cId}"></span></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Email</th>
+      <td><span th:text="${model.email}"></span></td>
+      </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td><span th:text="${model.phone}"></span></td>
+      </tr>
+    <tr>
+      <th scope="row">Work</th>
+      <td><span th:text="${model.work}"></span></td>
+      </tr>
+    <tr>
+      <th scope="row">description</th>
+      <td><span th:utext="${model.description}"></span></td>
+      </tr>
+  </tbody>
+  
+      
+</table>
+</div>
+		 <div class="container">
+		 
+		 <button th:onclick="|deleteContact(${model.cId})|" class="btn btn-danger btn-sm">DELETE</button>
+        
+        <form th:action="@{'/user/update-contact/'+${model.cId}}" class="mt-2" method="post">
+      <button type="submit" class="btn btn-primary btn-sm">UPDATE</button>
+      </form>
+      
+		 
+		 
+		 </div>
+		</div>
+		
+		
+		</div>
+  <div class="container bg-light">
+  
+  <h1 th:unless= "${model}">You Arev not Authorized to see this contact.. Sorry..!</h1>		
+		 
+  </div>
+		
+		</div>
+		
+		
+		
+	</section>
+</body>
+</html>

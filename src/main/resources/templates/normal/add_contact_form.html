@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>HomePage</title>
+
+
+</head>
+<body>
+	<section>
+
+		<div class="card" style="margin-right: 10px">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Add Contact</h1>
+				<div th:if="${session.message}" class="container">
+					<div th:classappend="${'alert-'+session.message.type}"
+						class="alert text-center" role="alert">
+						<span th:text="${session.message.content}"></span>
+					</div>
+					<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				</div>
+
+				<div class="container-fluid mt-1">
+
+
+
+					<div class="row">
+
+
+
+
+						<div class="col-md-10 offset-md-1">
+
+
+
+							<form th:action="@{/user/process-contact}" th:object="${contact}"
+								enctype="multipart/form-data" method="post">
+
+								<!--First name -->
+
+								<div class="col-md-10 my-1">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">+</div>
+										</div>
+										<input type="text" class="form-control" name="name"
+											required="required" id="firstname"
+											placeholder="Enter name here">
+									</div>
+								</div>
+								<br>
+								<!-- secondName -->
+								<div class="col-md-10 my-1">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">+</div>
+										</div>
+										<input type="text" class="form-control" name="secondName"
+											required="required" id="secondname"
+											placeholder="Enter nick name here">
+									</div>
+
+								</div>
+								<br>
+								<!--Phone feed  -->
+								<div class="col-md-10 my-1">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">+</div>
+										</div>
+
+										<input type="number" id="phone" class="form-control"
+											name="phone" placeholder="Enter Phone no. here"
+											required="required">
+									</div>
+								</div>
+								<!-- Email -->
+								<br>
+								<div class="col-md-10 my-1">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">+</div>
+										</div>
+										<input type="email" class="form-control" name="email"
+											placeholder="Enter Email here" required="required">
+									</div>
+
+								</div>
+								<!-- Work feed -->
+								<br>
+								<div class="col-md-10 my-1">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-briefcase"></i>
+											</div>
+										</div>
+										<input type="text" class="form-control" name="work" id="work"
+											required="required" placeholder="Enter work here">
+									</div>
+
+								</div>
+								<br>
+								<!-- contact description -->
+								<div class="col-md-10 my-1">
+									<div class="form-group mt-3">
+
+										<textarea name="description" id="mytextarea" rows="15"
+											class="form-control" required="required"
+											placeholder="Enter the contact description"></textarea>
+									</div>
+
+								</div>
+								<!--Contact Image   -->
+								<br>
+								<div class="col-md-10 my-1">
+									<label class="form-control" for="image"
+										style="margin-right:7px">Profile Picture</label> 
+										<input type="file" class="custom-file" required="required"
+										name="profileImage" id="image" />
+
+								</div>
+								<div class="container text-center">
+									<button class="btn btn-outline-primary">Save contact</button>
+
+								</div>
+
+
+							</form>
+
+
+
+
+						</div>
+
+
+
+
+
+					</div>
+
+
+				</div>
+
+
+
+
+
+			</div>
+
+
+		</div>
+             
+		
+
+	</section>
+</body>
+</html>
